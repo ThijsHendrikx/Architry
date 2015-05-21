@@ -1,0 +1,20 @@
+  
+<ion-view title="Projects" ng-init="init()">
+  <ion-content>
+
+      <ion-list>
+        <label class="item item-input">
+          <input type="text" placeholder="Add project">
+        </label>
+
+        <button class="button button-positive">
+         <i class="icon ion-ios-new"></i>
+        </button>
+
+
+        <ion-item ng-repeat="project in projects">{{project.title}}</ion-item>
+
+      </ion-list>
+
+  </ion-content>
+</ion-view>
