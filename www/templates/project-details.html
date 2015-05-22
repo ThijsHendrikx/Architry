@@ -1,20 +1,19 @@
+<ion-view view-title="{{project.title}}" ng-init="init()">
   
-<ion-view title="Project Details" ng-init="init()">
-  <ion-content>
+  <ion-content class="padding">
+      <img ng-src="{{project.thumbnail}}" style="width: 64px; height: 64px">
+      <p>
+        {{project.description}}
+      </p>
+
+
 
       <ion-list>
-        <label class="item item-input">
-          <input type="text" placeholder="Add project">
-        </label>
 
-        <button class="button button-positive">
-         <i class="icon ion-ios-new"></i>
-        </button>
-
-
-        <ion-item ng-repeat="project in projects">{{project.title}}</ion-item>
+        <ion-item ng-repeat="view in project.views" href="#/projects/details/{{view.viewId}}">{{view.title}}</ion-item>
 
       </ion-list>
+
 
   </ion-content>
 </ion-view>
