@@ -32,12 +32,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('details', {
-    url: '/projectdetails',
-    templateUrl: 'templates/projects.html',
-    controller:'ProjectDetailsCtrl'
+    url: "/projects/:projectId", 
+    templateUrl: "templates/project-details.html",
+    controller: 'ProjectDetailsCtrl'
+  })
+
+  .state('vrviewer', {
+    url: "/projects/details/:viewId", 
+    templateUrl: "templates/vrviewer.html",
+    controller: 'VRViewerCtrl'
   });
 
-  $urlRouterProvider.otherwise('/projects');
+  $urlRouterProvider.otherwise('projects');
 
 
 
