@@ -8,11 +8,11 @@
         </label>
 
         <button class="button button-positive">
-          <i class="icon ion-ios-new" ng-click=add("code")></i>
+         <i class="icon ion-ios-new"></i>
         </button>
 
 
-        <ion-item ng-repeat="project in projects" href="#/projects/{{project.id}}">{{project.title}}</ion-item>
+        <ion-item ng-repeat="project in projects">{{project.title}}</ion-item>
 
       </ion-list>
 
