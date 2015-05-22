@@ -27,11 +27,19 @@ angular.module('starter.controllers', [])
         if ('orientation' in screen) {
 		    screen.lockOrientation('landscape');
 		}
+
+		ionic.Platform.fullScreen(true, false); 
+
     });
+
+
+
     $scope.$on('$ionicView.unloaded', function (viewInfo, state) {
         if ('orientation' in screen) {
 		    screen.unlockOrientation();
 		}
+
+		ionic.Platform.fullScreen(false, true);
     });
 
 })
