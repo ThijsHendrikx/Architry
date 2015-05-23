@@ -27,11 +27,15 @@ angular.module('starter.controllers', [])
         if ('orientation' in screen) {
 		    screen.lockOrientation('landscape');
 		}
+
+		window.plugins.insomnia.keepAwake()
     });
     $scope.$on('$ionicView.unloaded', function (viewInfo, state) {
         if ('orientation' in screen) {
 		    screen.unlockOrientation();
 		}
+
+		window.plugins.insomnia.allowSleepAgain()
     });
 
 })

@@ -96,55 +96,134 @@ angular.module('starter.services', [])
 
     start:function(){
 
-        var rotationLeft  = document.querySelector(".imgleft .rotationWrapper"); 
-        var rotationRight = document.querySelector(".imgright .rotationWrapper");
+      function GetDeviceOrientation(){
 
-        var translationLeft  = rotationLeft.querySelector(".translationWrapper");
-        var translationRight = rotationRight.querySelector(".translationWrapper");
-
-        var translationWidth = translationLeft.offsetWidth;
+        var orientation = {x:0,y:0,z:0};
 
         if (window.DeviceOrientationEvent) {
-    
-          window.addEventListener('deviceorientation', function(eventData) {
+      
+            window.addEventListener('deviceorientation', function(eventData) {
 
-              var tiltLR = eventData.gamma;
-              var tiltFB = eventData.beta;
-              var dir = eventData.alpha;
+              orientation.x = eventData.gamma;
+              orientation.y = eventData.alpha;
+              orientation.z =  eventData.beta;
 
-              var normalizedRotation = tiltFB;
-              var normalizedTranslation = dir;
-
-              if( Math.abs(dir - currentTranslation) > 320){
-                normalizedTranslation = dir;
-              }
-
-              rotationLeft.style.webkitTransform = "rotate(" + - normalizedRotation + "deg)";
-              rotationRight.style.webkitTransform = "rotate("+ - normalizedRotation + "deg)";
-
-
-              translationLeft.style.marginLeft =  Math.round( ((360 - normalizedTranslation) / 360) * - (translationWidth / 2) ) + "px";
-              translationRight.style.marginLeft = Math.round( ((360 - normalizedTranslation) / 360) * - (translationWidth / 2) ) + "px";
- 
-              showDebugInfo(el,tiltLR,tiltFB,dir);
-
-          }, false);
-        
-        } else {
-          document.getElementById("doEvent").innerHTML = "Not supported."
+            });
         }
+
+        return orientation;
+      }
+      
+      var orientation = GetDeviceOrientation();
+
+
+
+
+      //Scenes
+      var sceneRTTLeft = new THREE.Scene();
+      var sceneRTTRight = new THREE.Scene();
+
+      var scene = new THREE.Scene();
+
+
+      //Cameras
+      var cameraRTTLeft = new THREE.PerspectiveCamera( 90, (window.innerWidth / 2) / window.innerHeight,1, 1000);
+      var cameraRTTRight = new THREE.PerspectiveCamera( 90, (window.innerWidth / 2) / window.innerHeight,1, 1000);
+
+      var camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -10000, 10000 );
+
+
+
+      //Renderer
+      var renderer = new THREE.WebGLRenderer({clearColor:0x888888,antialias:true});
+      renderer.setSize( window.innerWidth, window.innerHeight );
      
-    },
+      document.querySelector(".content").appendChild( renderer.domElement );
 
-    showDebugInfo:function(el,tiltLR,tiltFB,dir){
 
-      el.querySelector("#debug").style.display = "block";
 
-      el.querySelector("#doTiltLR").innerHTML = Math.round(tiltLR);
-      el.querySelector("#doTiltFB").innerHTML = Math.round(tiltFB); 
-      el.querySelector("#doDirection").innerHTML = Math.round(dir);
+      //Geometry
+      var sphereGeometry = new THREE.SphereGeometry( 20, 32, 32 );
+      var planeGeometry = new THREE.PlaneGeometry( window.innerWidth / 2, window.innerHeight );
 
+      
+
+      //Textures
+      var textureRTTLeft = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat } );
+      var textureRTTRight = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat } );
+
+
+
+      //Materials
+      var materialRTTLeft = new THREE.MeshBasicMaterial({
+        side: THREE.BackSide,
+        map: THREE.ImageUtils.loadTexture('img/scene1_left.jpg')
+      });
+
+      var materialRTTRight = new THREE.MeshBasicMaterial({
+        side: THREE.BackSide,
+        map: THREE.ImageUtils.loadTexture('img/scene1_right.jpg')
+      });
+
+     var materialLeft =  new THREE.MeshBasicMaterial({map:textureRTTLeft} );
+     var materialRight = new THREE.MeshBasicMaterial({map:textureRTTRight} );
+
+
+
+      //Meshes
+      var sphereLeft  = new THREE.Mesh( sphereGeometry, materialRTTLeft );
+      var sphereRight = new THREE.Mesh( sphereGeometry, materialRTTRight );
+
+      var planeLeft  = new THREE.Mesh( planeGeometry, materialLeft );
+      var planeRight = new THREE.Mesh( planeGeometry, materialRight );
+      
+
+      sceneRTTLeft.add(  sphereLeft );
+      sceneRTTRight.add( sphereRight );
+
+      scene.add(planeLeft);
+      scene.add(planeRight);
+
+
+      camera.position.z = 5;
+
+
+      planeLeft.position.x = -window.innerWidth / 4;
+      planeRight.position.x = -window.innerWidth / -4;
+
+
+
+      function DegreesToRadians(degrees){
+          radians = degrees * (Math.PI / 180)
+          return radians;
+      }
+       
+      
+ 
+
+      var render = function () {
+        requestAnimationFrame( render );
+
+
+        sphereLeft.rotation.y = -DegreesToRadians(orientation.y);
+        sphereLeft.rotation.z = DegreesToRadians(orientation.z);
+        sphereLeft.rotation.x = DegreesToRadians(orientation.x + 90);
+
+        sphereRight.rotation.x = sphereLeft.rotation.x;
+        sphereRight.rotation.y = sphereLeft.rotation.y;
+        sphereRight.rotation.z = sphereLeft.rotation.z;
+
+        renderer.render(sceneRTTLeft, cameraRTTLeft,textureRTTLeft,true);
+
+        renderer.render(sceneRTTRight, cameraRTTRight,textureRTTRight,true);
+
+        renderer.render(scene,camera);
+      };
+
+      render();
+     
     }
+
 
   }
 

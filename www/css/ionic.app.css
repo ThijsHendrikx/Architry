@@ -15,13 +15,16 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+canvas {
+  width: 100%;
+  height: 100%; }
+
 #debug {
   margin: 2%;
   width: 98%;
   position: absolute;
   left: 0px;
   top: 0px;
-  display: none;
   color: #F00; }
 
 .imgleft, .imgright {
