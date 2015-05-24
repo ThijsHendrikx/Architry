@@ -113,7 +113,7 @@ angular.module('starter.services', [])
       var renderer = new THREE.WebGLRenderer({clearColor:0x888888,antialias:true});
       renderer.setSize( window.innerWidth, window.innerHeight );
      
-      document.querySelector(".content").appendChild( renderer.domElement );
+      document.querySelector(".simulator").appendChild( renderer.domElement );
 
 
 
@@ -167,17 +167,15 @@ angular.module('starter.services', [])
       planeRight.position.x = -window.innerWidth / -4;
 
 
-
-      function DegreesToRadians(degrees){
-          radians = degrees * (Math.PI / 180)
-          return radians;
-      }
-
       controlsLeft = new DeviceOrientationController( cameraRTTLeft, renderer.domElement );
-      controlsLeft.connect();       
+      controlsLeft.connect();  
+
+      controlsLeft.enableManualZoom = false;     
 
       controlsRight = new DeviceOrientationController( cameraRTTRight, renderer.domElement );
       controlsRight.connect();     
+
+      controlsRight.enableManualZoom = false;
       
  
 

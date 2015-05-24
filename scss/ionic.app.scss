@@ -25,6 +25,21 @@ canvas{
 
 }
 
+
+.noscroll{
+	overflow:hidden;
+}
+
+.gestureRecognizer{
+
+	position:fixed;
+	left:0px;
+	top:0px;
+	z-index:99;
+	width:100%;
+	height:100%;
+}
+
 .debug{
     margin:2%;
     width:98%;
