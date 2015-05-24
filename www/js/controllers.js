@@ -25,7 +25,7 @@ angular.module('starter.controllers', [])
 
 	$scope.$on('$ionicView.loaded', function (viewInfo, state) {
         if ('orientation' in screen) {
-		    screen.lockOrientation('landscape');
+		   // screen.lockOrientation('landscape-secondary');
 		}
 
 		window.plugins.insomnia.keepAwake()

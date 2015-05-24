@@ -96,29 +96,6 @@ angular.module('starter.services', [])
 
     start:function(){
 
-      function GetDeviceOrientation(){
-
-        var orientation = {x:0,y:0,z:0};
-
-        if (window.DeviceOrientationEvent) {
-      
-            window.addEventListener('deviceorientation', function(eventData) {
-
-              orientation.x = eventData.gamma;
-              orientation.y = eventData.alpha;
-              orientation.z =  eventData.beta;
-
-            });
-        }
-
-        return orientation;
-      }
-      
-      var orientation = GetDeviceOrientation();
-
-
-
-
       //Scenes
       var sceneRTTLeft = new THREE.Scene();
       var sceneRTTRight = new THREE.Scene();
@@ -131,8 +108,6 @@ angular.module('starter.services', [])
       var cameraRTTRight = new THREE.PerspectiveCamera( 90, (window.innerWidth / 2) / window.innerHeight,1, 1000);
 
       var camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -10000, 10000 );
-
-
 
       //Renderer
       var renderer = new THREE.WebGLRenderer({clearColor:0x888888,antialias:true});
@@ -197,21 +172,20 @@ angular.module('starter.services', [])
           radians = degrees * (Math.PI / 180)
           return radians;
       }
-       
+
+      controlsLeft = new DeviceOrientationController( cameraRTTLeft, renderer.domElement );
+      controlsLeft.connect();       
+
+      controlsRight = new DeviceOrientationController( cameraRTTRight, renderer.domElement );
+      controlsRight.connect();     
       
  
 
       var render = function () {
         requestAnimationFrame( render );
 
-
-        sphereLeft.rotation.y = -DegreesToRadians(orientation.y);
-        sphereLeft.rotation.z = DegreesToRadians(orientation.z);
-        sphereLeft.rotation.x = DegreesToRadians(orientation.x + 90);
-
-        sphereRight.rotation.x = sphereLeft.rotation.x;
-        sphereRight.rotation.y = sphereLeft.rotation.y;
-        sphereRight.rotation.z = sphereLeft.rotation.z;
+        controlsLeft.update();
+        controlsRight.update();
 
         renderer.render(sceneRTTLeft, cameraRTTLeft,textureRTTLeft,true);
 
