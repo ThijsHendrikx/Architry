@@ -2,16 +2,22 @@
 <ion-view title="Architry" ng-init="init()">
   <ion-content>
       <ion-list>
-      <hr>
-      <h2 >Projects</h2>
 
       <h4 class="add">Add project:</h4>
-        <label class="item1 addproject item-energized item-input">
-          <input type="text" class="submitCode" placeholder="Submit project code"><button class="button  button-energized">
-          <i class="icon ion-ios-new" ng-click=add("code")>Add</i>
-        </button>
-        </label>
-   
+         <form ng-submit="addProject(projectCode)">
+
+          <label class="item1 addproject item-energized item-input">
+            <input type="text" placeholder="Submit project code" class="submitCode" ng-model="projectCode">
+          </label>
+        
+          <button type="submit" class="button button-energized">
+             <i class="icon ion-ios-new" ng-click=add("code")>Add</i>
+          </button>
+
+        </form>
+
+      <hr>
+      <h2 >Projects</h2>
 
         <ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}">
 

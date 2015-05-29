@@ -61,9 +61,15 @@ angular.module('starter.services', [])
     all: function() {
       return projects;
     },
+
+
+
     remove: function(project) {
       projects.splice(projects.indexOf(project), 1);
     },
+
+
+
     get: function(projectId) {
       for (var i = 0; i < projects.length; i++) {
         if (projects[i].id === parseInt(projectId)) {
@@ -72,29 +78,28 @@ angular.module('starter.services', [])
       }
       return null;
     },
-    add: function(projectCode){
-      projects.push({id:99,title:"New project",desciption:"Whutt",thumbnail:"https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg"})
+
+
+
+    add: function(project){
+      projects.push(project);
     }
+
+
   };
 })
 
 
 .factory('Simulator', function() {
 
-  var translationLeft = null;
-  var translationRight = null;
 
-  var rotationLeft = null;
-  var rotationRight = null;
-
-  var currentRotation = 0;
-  var currentTranslation = 0;
-
-  var translationWidth = 0;
+  var active = false;
 
   return{
 
     start:function(){
+
+      active = true;
 
       //Scenes
       var sceneRTTLeft = new THREE.Scene();
@@ -132,12 +137,12 @@ angular.module('starter.services', [])
       //Materials
       var materialRTTLeft = new THREE.MeshBasicMaterial({
         side: THREE.BackSide,
-        map: THREE.ImageUtils.loadTexture('img/scene1_left.jpg')
+        map: THREE.ImageUtils.loadTexture('img/scene2_left.jpg')
       });
 
       var materialRTTRight = new THREE.MeshBasicMaterial({
         side: THREE.BackSide,
-        map: THREE.ImageUtils.loadTexture('img/scene1_right.jpg')
+        map: THREE.ImageUtils.loadTexture('img/scene2_right.jpg')
       });
 
      var materialLeft =  new THREE.MeshBasicMaterial({map:textureRTTLeft} );
@@ -170,13 +175,8 @@ angular.module('starter.services', [])
       controlsLeft = new DeviceOrientationController( cameraRTTLeft, renderer.domElement );
       controlsLeft.connect();  
 
-      controlsLeft.enableManualZoom = false;     
-
       controlsRight = new DeviceOrientationController( cameraRTTRight, renderer.domElement );
       controlsRight.connect();     
-
-      controlsRight.enableManualZoom = false;
-      
  
 
       var render = function () {
