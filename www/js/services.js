@@ -7,7 +7,7 @@ angular.module('starter.services', [])
   var projects = [{
     id: 0,
     title: 'Project 1',
-    description: 'A nice project',
+    description: 'A nice project Getting Started. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide ',
     tumbnail: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
     views:[
       {
@@ -26,7 +26,7 @@ angular.module('starter.services', [])
   }, {
     id: 1,
     title: 'Project 2',
-    desciption: 'A cool project',
+    desciption: 'A cool project Getting Started. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide ',
     thumbnail: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
     views:[
       {
@@ -45,8 +45,8 @@ angular.module('starter.services', [])
   },{
     id: 2,
     title: 'Project 3',
-    desciption: 'A awesome project',
-    thumbnail: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
+    desciption: 'A awesome project Getting Started. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide',
+    thumbnail: '../img/project1.jpg',
     views:[
       {
         viewId:0,
