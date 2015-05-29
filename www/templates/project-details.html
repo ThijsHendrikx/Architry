@@ -10,8 +10,11 @@
 
       <ion-list>
 
-        <ion-item ng-repeat="view in project.views" href="#/projects/details/{{view.viewId}}">{{view.title}}</ion-item>
-<ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}"><div class="titleProject"><h4>{{project.title}}<h4></div><div class ="projectphoto"><img src="{{project. tumbnail}}"></div><div class="descriptionProject"><p>{{project.description}}</p></div> </ion-item
+        <ion-item ng-repeat="view in project.views" href="#/projects/details/{{view.viewId}}">{{view.title}}
+
+        </ion-item>
+<ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}">
+<div class="titleProject"><h4>{{project.title}}<h4></div><div class ="projectphoto"><img src="{{project. tumbnail}}"></div><div class="descriptionProject"><p>{{project.description}}</p></div> </ion-item> 
 
 
       </ion-list>

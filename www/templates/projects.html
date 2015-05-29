@@ -13,7 +13,14 @@
         </label>
    
 
-        <ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}"><div class="titleProject"><h3>{{project.title}}<h3></div><div class ="projectphoto"><img src="{{project. tumbnail}}"></div><div class="descriptionProject"><p>{{project.description}}</p></div> </ion-item>
+        <ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}">
+
+        <div class="titleProject"><h3>{{project.title}}</h3></div>
+        <div class ="projectphoto"><img src="{{project. tumbnail}}"></div>
+        <div  class="item item-body descriptionProject"><p>{{project.description}}</p></div> 
+
+
+        </ion-item>
 
       </ion-list>
 

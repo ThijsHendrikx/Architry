@@ -35,11 +35,15 @@ h4.add {
   margin-bottom: 6px !important; }
 
 p {
-  letter-spacing: 1.5px !important; }
+  letter-spacing: 2.5px !important;
+  font-weight: 200 !important; }
+
+p.ng-binding {
+  margin-top: 0 !important; }
 
 hr {
   margin-top: -2px;
-  width: 40%; }
+  width: 20%; }
 
 .gestureRecognizer {
   position: fixed;
@@ -81,9 +85,13 @@ ion-nav-bar .title {
   width: 100% !important;
   margin: 0 auto; }
 
+.wrapping-list .item-content, .wrapping-list .item {
+  overflow: initial;
+  white-space: initial; }
+
 .descriptionProject {
-  background-color: #869898;
-  padding: 15px 10px; }
+  background-color: #869898 !important;
+  margin-top: 2px; }
 
 .descriptionProject p {
   color: white !important; }
