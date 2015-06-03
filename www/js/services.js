@@ -7,18 +7,18 @@ angular.module('starter.services', [])
   var projects = [{
     id: 0,
     title: 'Project 1',
-    description: 'A nice project Getting Started. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide ',
-    tumbnail: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+    desciption: 'A nice project Getting Started. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide ',
+    thumbnail: './img/project1.jpg',
     views:[
       {
         viewId:0,
-        title:"Restaurant",
+        title:"1. Restaurant",
         imgLeftUrl:'',
         imgRightUrl:''
       },
       {
         viewId:1,
-        title:"Terras",
+        title:"2. Terras",
         imgLeftUrl:'',
         imgRightUrl:''
       }
@@ -27,17 +27,17 @@ angular.module('starter.services', [])
     id: 1,
     title: 'Project 2',
     desciption: 'A cool project Getting Started. R is a free software environment for statistical computing and graphics. It compiles and runs on a wide ',
-    thumbnail: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
+    thumbnail: './img/project1.jpg',
     views:[
       {
         viewId:0,
-        title:"Supermarkt",
+        title:"1. Supermarkt",
         imgLeftUrl:'',
         imgRightUrl:''
       },
       {
         viewId:1,
-        title:"Terras",
+        title:"2. Terras",
         imgLeftUrl:'',
         imgRightUrl:''
       }
@@ -73,7 +73,7 @@ angular.module('starter.services', [])
       return null;
     },
     add: function(projectCode){
-      projects.push({id:99,title:"New project",desciption:"Whutt",thumbnail:"https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg"})
+      projects.push({id:99,title:"New project", desciption:"Whutt", thumbnail:"https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg"})
     }
   };
 })

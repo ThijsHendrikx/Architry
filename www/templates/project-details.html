@@ -1,24 +1,30 @@
 <ion-view view-title="{{project.title}}" ng-init="init()">
   
-  <ion-content class="padding">
-      <img ng-src="{{project.thumbnail}}" style="width: 64px; height: 64px">
-      <p>
-        {{project.description}}
-      </p>
+<div class="bar bar-subheader">
+   <hr>
+      <h2 >Viewpoints map</h2>
 
 
+        </div>
+  <ion-content class="has-subheader">
 
-      <ion-list>
 
-        <ion-item ng-repeat="view in project.views" href="#/projects/details/{{view.viewId}}">{{view.title}}
+    <img src="./img/projectplattegrond.jpg" alt="">
+        </div>
+
+  <ion-list>
+   
+        <ion-item class="itemView" ng-repeat="view in project.views" href="#/projects/details/{{view.viewId}}">
+
+        <img class="thumbnail" ng-src="{{project.thumbnail}}" >
+        <div class="rightDescription  item-body"><h4>{{view.title}}</h4><!-- <div class="description" ><P>Hier kun je de tuin in VR zien.</P></div> --> <button class="viewButton button-outline button-positive">
+view in VR!
+</button>
+</div>
+
 
         </ion-item>
-<ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}">
-<div class="titleProject"><h4>{{project.title}}<h4></div><div class ="projectphoto"><img src="{{project. tumbnail}}"></div><div class="descriptionProject"><p>{{project.description}}</p></div> </ion-item> 
-
-
-      </ion-list>
-
+    
 
   </ion-content>
 </ion-view>

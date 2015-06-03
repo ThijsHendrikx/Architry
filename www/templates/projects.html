@@ -1,9 +1,9 @@
   
-<ion-view title="Architry" ng-init="init()">
-  <ion-content>
-      <ion-list>
-      <hr>
-      <h2 >Projects</h2>
+<ion-view title="<img src='./img/logo.png'>" ng-init="init()">
+  
+<div class="bar bar-subheader1">
+   <hr>
+      <h2 >view</h2>
 
       <h4 class="add">Add project:</h4>
         <label class="item1 addproject item-energized item-input">
@@ -11,13 +11,25 @@
           <i class="icon ion-ios-new" ng-click=add("code")>Add</i>
         </button>
         </label>
+
+
+        </div>
+  <ion-content class="has-subheader1">
+
+      <ion-list>
+     
    
 
         <ion-item ng-repeat="project in projects" class="projects" href="#/projects/{{project.id}}">
 
         <div class="titleProject"><h3>{{project.title}}</h3></div>
-        <div class ="projectphoto"><img src="{{project. tumbnail}}"></div>
-        <div  class="item item-body descriptionProject"><p>{{project.description}}</p></div> 
+        <div class ="projectphoto">
+<!--          <div class="viewButton">view</div>
+ -->
+        <img src="{{project.thumbnail}}">
+    </div>
+        <div  class="item item-body descriptionProject"><h4>About the project</h4><p>{{project.desciption}}</p></div>
+
 
 
         </ion-item>
